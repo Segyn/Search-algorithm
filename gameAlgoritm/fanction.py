@@ -4,7 +4,7 @@
 # начальное число всегда равен нулю.
 def min_algorithm():
     min_number = 0
-    max_algorithm(min_number)
+    return max_algorithm(min_number)
 
 
 # Максимальное число из набора
@@ -16,10 +16,10 @@ def max_algorithm(min_number: int):
         max_number = int(max_number)
         if max_number == 0:
             return print('Поиск не требуется')
-        start_algorithm(min_number, max_number)
+        return start_algorithm(min_number, max_number)
     else:
         print('Неправильный ввод! Повторите ввод согласно запроса!\n')
-        max_algorithm(min_number)
+        return max_algorithm(min_number)
 
 
 # Ввод искомого числа
@@ -30,15 +30,19 @@ def start_algorithm(min_number, max_number):
         user_number = int(user_number)
         if user_number > max_number:
             print('Вы ввели число больше максимального! Повторите ввод согласно запроса!\n')
-        counter_algorithm(user_number, min_number, max_number, 0)
+            return start_algorithm(min_number, max_number)
+        if user_number == min_number or user_number == max_number:
+            return print('Поиск завершён за одну попытку')
+        return counter_algorithm(user_number, min_number, max_number, 0)
     else:
         print('Неправильный ввод! Повторите ввод согласно запроса!\n')
-        start_algorithm(min_number, max_number)
+        return start_algorithm(min_number, max_number)
+
 
 # Счетчик
 def counter_algorithm(user_number: int, min_number: int, max_number: int, attempt_counter):
     attempt_counter += 1
-    search_algorithm(user_number, min_number, max_number, attempt_counter)
+    return search_algorithm(user_number, min_number, max_number, attempt_counter)
 
 
 # Алгоритм поиска
@@ -53,7 +57,7 @@ def search_algorithm(user_number: int, min_number: int, max_number: int, attempt
         min_number += search
         attempt_counter += 1
 
-    search_algorithm(user_number, min_number, max_number, attempt_counter)
+    return search_algorithm(user_number, min_number, max_number, attempt_counter)
 
 
 if __name__ == '__main__':
