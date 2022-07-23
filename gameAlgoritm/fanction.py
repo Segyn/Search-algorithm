@@ -1,5 +1,6 @@
 # Алгоритм пузырькового метода
 
+#
 def start_algorithm():
     user_number = int(input('Введите число то 0 до 100: '))
     max_number = 100
