@@ -1,33 +1,39 @@
-# Алгоритм пузырькового метода
-
-# Создаем ввод числа пользователем
-def start_algorithm():
-    user_number = input('Введите число то 0 до 100: ')
-    # проверяем что введено число
-    if user_number.isnumeric():
-        user_number = int(user_number)
-        max_algorithm(user_number)
-    else:
-        print('Вы ввели не число')
-        start_algorithm()
+# Алгоритм пузырькового метода поиска целого числа из сортированного набора чисел
 
 
-# Создаем максимальное число
-def max_algorithm(user_number: int):
-    max_number = 100
-    if user_number > max_number:
-        print(f'Вы вели число больше разрешённого {max_number}')
-        start_algorithm()
-    min_algorithm(user_number, max_number)
-
-
-# Создаем минимальное число
-def min_algorithm(user_number: int, max_number: int):
+# начальное число всегда равен нулю.
+def min_algorithm():
     min_number = 0
-    if user_number < max_number:
-        print(f'Вы вели число меньше разрешённого {min_number}')
-        start_algorithm()
-    search_algorithm(user_number, min_number, max_number)
+    max_algorithm(min_number)
+
+
+# Максимальное число из набора
+def max_algorithm(min_number: int):
+    # Получаем максимальное число
+    max_number = input('Введите целое положительное максимальное число набора от нуля до ->')
+    # Проверяем полученный набор
+    if max_number.isdigit():
+        max_number = int(max_number)
+        if max_number == 0:
+            return print('Поиск не требуется')
+        start_algorithm(min_number, max_number)
+    else:
+        print('Неправильный ввод! Повторите ввод согласно запроса!\n')
+        max_algorithm(min_number)
+
+
+# Ввод искомого числа
+def start_algorithm(min_number, max_number):
+    user_number = input(f'Введите для поиска целое число то 0 до {max_number}: ->')
+    # проверяем что ввод
+    if user_number.isdigit():
+        user_number = int(user_number)
+        if user_number > max_number:
+            print('Вы ввели число больше максимального! Повторите ввод согласно запроса!\n')
+        search_algorithm(user_number, min_number, max_number)
+    else:
+        print('Неправильный ввод! Повторите ввод согласно запроса!\n')
+        start_algorithm(min_number, max_number)
 
 
 # Алгоритм поиска
@@ -44,4 +50,4 @@ def search_algorithm(user_number: int, min_number: int, max_number: int):
 
 
 if __name__ == '__main__':
-    start_algorithm()
+    min_algorithm()
